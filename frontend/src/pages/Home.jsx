@@ -30,7 +30,7 @@ const FEATURES = [
 
 const TESTIMONIALS = [
   { name: 'Kasun Perera', role: 'Member since 2022', text: 'Fitness World completely transformed my lifestyle. Lost 18kg in 8 months with the guidance of an incredible trainer.', rating: 5, initials: 'KP' },
-  { name: 'Dilani Silva', role: 'Member since 2023', text: 'The yoga and pilates classes are world-class. The atmosphere is motivating and the staff is always welcoming.', rating: 5, initials: 'DS' },
+  { name: 'Dilani Silva', role: 'Member since 2023', text: 'The cardio and fitness training sessions have made a huge difference in my health and energy. The trainers are supportive, and the atmosphere keeps me motivated every day.', rating: 5, initials: 'DS' },
   { name: 'Ravin Fernando', role: 'Member since 2021', text: 'Best gym in Sri Lanka. The equipment is top quality and the personal training sessions are worth every penny.', rating: 5, initials: 'RF' },
 ];
 
