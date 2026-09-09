@@ -19,15 +19,26 @@ export default function About() {
         <div className="container">
           <h2 className="section-title">Meet Our <span>Owner & Head Coach</span></h2>
           <div style={{ maxWidth: '700px', margin: '0 auto' }}>
-            <div className="card" style={{ textAlign: 'center', padding: '32px' }}>
+            <div className="card" style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              textAlign: 'center',
+              padding: '32px',
+            }}>
               <img src="/main_coach.jpeg" alt="MR. Harsha - Owner & Head Coach" style={{
-                width: 160, height: 160, borderRadius: '50%',
-                objectFit: 'cover', marginBottom: '20px',
+                width: 160,
+                height: 160,
+                borderRadius: '50%',
+                objectFit: 'cover',
+                marginBottom: '20px',
                 border: '5px solid rgba(250,204,21,0.4)',
+                display: 'block',
+                alignSelf: 'center',
               }} />
-              <h3 style={{ fontSize: '24px', fontWeight: 800, marginBottom: '8px', color: 'var(--yellow-primary)', fontFamily: 'Outfit' }}>MR. Harsha</h3>
-              <div className="badge badge-yellow" style={{ marginBottom: '16px', display: 'inline-block' }}>Owner & Head Coach</div>
-              <p style={{ color: 'var(--text-secondary)', fontSize: '15px', lineHeight: 1.8, maxWidth: '600px', margin: '0 auto' }}>
+              <h3 style={{ fontSize: '24px', fontWeight: 800, marginBottom: '8px', color: 'var(--yellow-primary)', fontFamily: 'Outfit', textAlign: 'center' }}>MR. Harsha</h3>
+              <div className="badge badge-yellow" style={{ marginBottom: '16px', display: 'inline-block', textAlign: 'center' }}>Owner & Head Coach</div>
+              <p style={{ color: 'var(--text-secondary)', fontSize: '15px', lineHeight: 1.8, maxWidth: '600px', margin: 0, textAlign: 'center' }}>
                 MR. Harsha is the founder and driving force behind Fitness World. With over 15 years of experience in the fitness industry, he has dedicated his life to helping people transform their lives through fitness. His passion, expertise, and commitment to excellence have made Fitness World the trusted destination for fitness enthusiasts across Sri Lanka.
               </p>
             </div>
