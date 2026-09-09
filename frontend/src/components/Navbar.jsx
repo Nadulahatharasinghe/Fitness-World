@@ -38,7 +38,6 @@ export default function Navbar() {
     { to: '/', label: 'Home' },
     { to: '/about', label: 'About' },
     { to: '/memberships', label: 'Memberships' },
-    { to: '/trainers', label: 'Trainers' },
     { to: '/store', label: 'Store' },
     { to: '/contact', label: 'Contact' },
   ];

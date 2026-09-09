@@ -14,7 +14,6 @@ const ResetPassword = lazy(() => import('./pages/ResetPassword'));
 const UserDashboard = lazy(() => import('./pages/UserDashboard'));
 const AdminDashboard = lazy(() => import('./pages/AdminDashboard'));
 const About = lazy(() => import('./pages/About'));
-const Trainers = lazy(() => import('./pages/Trainers'));
 const Memberships = lazy(() => import('./pages/Memberships'));
 const ApplyMembership = lazy(() => import('./pages/ApplyMembership'));
 const Store = lazy(() => import('./pages/Store'));
@@ -37,7 +36,6 @@ export default function App() {
         <Routes>
           <Route path="/"              element={<Home />} />
           <Route path="/about"         element={<About />} />
-          <Route path="/trainers"      element={<Trainers />} />
           <Route path="/memberships"   element={<Memberships />} />
           <Route path="/apply-membership/:planId" element={
             <ProtectedRoute><ApplyMembership /></ProtectedRoute>

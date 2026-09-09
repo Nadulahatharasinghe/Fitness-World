@@ -101,7 +101,7 @@ export default function OfferPopup() {
           marginBottom: '28px',
           lineHeight: 1.6
         }}>
-          Start your fitness journey with our premium trainers, memberships, and supplements.
+          Start your fitness journey with premium memberships and supplements.
         </p>
 
         <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', justifyContent: 'center' }}>

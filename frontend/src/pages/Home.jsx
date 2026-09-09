@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { planAPI, trainerAPI } from '../services/api';
+import { planAPI } from '../services/api';
 import FloatingWhatsApp from '../components/FloatingWhatsApp';
 import OfferPopup from '../components/OfferPopup';
 
@@ -38,13 +38,6 @@ const DEFAULT_PLANS = [
   { _id: '1', name: 'Starter', price: 2000, duration: 1, isPopular: false, features: ['Full gym access', 'Locker room', 'Cardio zone', '1 fitness assessment'], includesTrainer: false },
   { _id: '2', name: 'Pro', price: 5000, duration: 1, isPopular: true, features: ['Everything in Starter', '2 PT sessions/month', 'Group classes', 'Nutrition consultation', 'Progress tracking'], includesTrainer: true },
   { _id: '3', name: 'Elite', price: 14000, duration: 1, isPopular: false, features: ['Everything in Pro', 'Unlimited PT sessions', 'Priority booking', 'Supplement discounts', 'Body composition analysis', 'Dedicated trainer'], includesTrainer: true },
-];
-
-const DEFAULT_TRAINERS = [
-  { _id: 'owner', name: 'MR. Harsha', specialization: 'Owner & Head Coach', experience: 15, bio: 'Founder of Fitness World with 15+ years of experience in fitness and strength training. Dedicated to transforming lives.', avatar: '/main_coach.jpeg', rating: 5.0 },
-  { _id: '1', name: 'Ashan Mendis', specialization: 'Strength Training', experience: 8, bio: 'Former national powerlifter with 8+ years coaching experience.', avatar: '', rating: 4.9 },
-  { _id: '2', name: 'Nisha Rajapaksa', specialization: 'Yoga', experience: 6, bio: 'Certified yoga instructor specializing in mindfulness and flexibility.', avatar: '', rating: 4.8 },
-  { _id: '3', name: 'Tharaka Wijesiri', specialization: 'CrossFit', experience: 5, bio: 'CrossFit Level 2 trainer passionate about functional fitness.', avatar: '', rating: 4.7 },
 ];
 
 /* ── Hero Slideshow Photos ── */
@@ -127,7 +120,7 @@ function HeroSection() {
             Self Here.
           </h1>
           <p style={{ fontSize: '18px', color: 'var(--text-secondary)', maxWidth: '520px', lineHeight: 1.7, marginBottom: '40px' }}>
-            Join Fitness World — where elite equipment, expert trainers, and a powerful community push you beyond your limits every single day.
+            Join Fitness World — where elite equipment, expert coaching, and a powerful community push you beyond your limits every single day.
           </p>
           <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
             <Link to="/register" className="btn btn-primary btn-lg">
@@ -139,7 +132,7 @@ function HeroSection() {
           </div>
           {/* Stats */}
           <div style={{ display: 'flex', gap: '40px', marginTop: '56px', flexWrap: 'wrap' }}>
-            {[['2,500+', 'Active Members'], ['50+', 'Expert Trainers'], ['15+', 'Years of Excellence'], ['98%', 'Member Satisfaction']].map(([val, label]) => (
+            {[['2,500+', 'Active Members'], ['15+', 'Years of Excellence'], ['98%', 'Member Satisfaction']].map(([val, label]) => (
               <div key={label}>
                 <div style={{ fontSize: '28px', fontWeight: 900, color: 'var(--yellow-primary)', fontFamily: 'Outfit' }}>{val}</div>
                 <div style={{ fontSize: '13px', color: 'var(--text-muted)', marginTop: '2px' }}>{label}</div>
@@ -231,56 +224,6 @@ function PlansSection({ plans }) {
               <Link to="/register" className={`btn btn-full ${plan.isPopular ? 'btn-primary' : 'btn-outline'}`}>
                 Get Started
               </Link>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function TrainersSection({ trainers }) {
-  // Always add MR. Harsha at the top
-  const MR_HARSHA = { _id: 'owner', name: 'MR. Harsha', specialization: 'Owner & Head Coach', experience: 15, bio: 'Founder of Fitness World with 15+ years of experience in fitness and strength training. Dedicated to transforming lives.', avatar: '/main_coach.jpeg', rating: 5.0 };
-  const displayTrainers = [MR_HARSHA, ...trainers.filter(t => t._id !== 'owner')];
-
-  return (
-    <section className="section" style={{ background: 'var(--bg-secondary)' }} id="trainers">
-      <div className="container">
-        <h2 className="section-title">Meet Our <span>Expert Trainers</span></h2>
-        <p className="section-subtitle">Certified professionals dedicated to your success.</p>
-        <div className="grid-3" style={{ gap: '24px', maxWidth: '960px', margin: '0 auto' }}>
-          {displayTrainers.map((trainer) => (
-            <div key={trainer._id} className="card" style={{ textAlign: 'center' }}>
-              {/* Avatar */}
-              {trainer.avatar ? (
-                <img src={trainer.avatar} alt={trainer.name} style={{
-                  width: 80, height: 80, borderRadius: '50%',
-                  objectFit: 'cover', margin: '0 auto 16px',
-                  border: trainer._id === 'owner' ? '4px solid rgba(250,204,21,0.5)' : '3px solid rgba(250,204,21,0.3)',
-                }} />
-              ) : (
-                <div style={{
-                  width: 80, height: 80, borderRadius: '50%',
-                  background: 'linear-gradient(135deg, var(--yellow-primary), var(--yellow-accent))',
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  margin: '0 auto 16px',
-                  fontSize: '28px', fontWeight: 900, color: '#000', fontFamily: 'Outfit',
-                  border: '3px solid rgba(250,204,21,0.3)',
-                }}>
-                  {trainer.name.charAt(0)}
-                </div>
-              )}
-              <h3 style={{ fontSize: '18px', fontWeight: 700, marginBottom: '4px', fontFamily: 'Outfit' }}>{trainer.name}</h3>
-              <div className="badge badge-yellow" style={{ marginBottom: '12px' }}>{trainer.specialization}</div>
-              <p style={{ color: 'var(--text-secondary)', fontSize: '13px', lineHeight: 1.6, marginBottom: '12px' }}>{trainer.bio}</p>
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '4px' }}>
-                {Array.from({ length: Math.floor(trainer.rating || 5) }).map((_, i) => <StarIcon key={i} />)}
-                <span style={{ fontSize: '13px', color: 'var(--text-muted)', marginLeft: '4px' }}>{trainer.rating || 5.0}</span>
-              </div>
-              <div style={{ fontSize: '13px', color: 'var(--text-muted)', marginTop: '6px' }}>
-                {trainer.experience} yrs experience
-              </div>
             </div>
           ))}
         </div>
@@ -391,7 +334,7 @@ function Footer() {
           </div>
           <div>
             <div style={{ fontWeight: 600, marginBottom: '16px', color: 'var(--text-primary)' }}>Quick Links</div>
-            {['Home', 'Plans', 'Trainers', 'Contact'].map(link => (
+            {['Home', 'Plans', 'Contact'].map(link => (
               <div key={link} style={{ marginBottom: '10px' }}>
                 <a href={link === 'Home' ? '/' : `/#${link.toLowerCase()}`} style={{ color: 'var(--text-muted)', fontSize: '14px', textDecoration: 'none', transition: 'color 0.2s' }}
                   onMouseEnter={e => e.target.style.color = 'var(--yellow-primary)'}
@@ -436,11 +379,9 @@ function Footer() {
 /* ── Main Home Page ── */
 export default function Home() {
   const [plans, setPlans] = useState(DEFAULT_PLANS);
-  const [trainers, setTrainers] = useState(DEFAULT_TRAINERS);
 
   useEffect(() => {
     planAPI.getAll().then(r => { if (r.data.plans?.length) setPlans(r.data.plans); }).catch(() => {});
-    trainerAPI.getAll().then(r => { if (r.data.trainers?.length) setTrainers(r.data.trainers); }).catch(() => {});
   }, []);
 
   return (
@@ -448,7 +389,6 @@ export default function Home() {
       <HeroSection />
       <FeaturesSection />
       <PlansSection plans={plans} />
-      <TrainersSection trainers={trainers} />
       <TestimonialsSection />
       <ContactSection />
       <Footer />

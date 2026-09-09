@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { adminAPI, planAPI, trainerAPI } from '../services/api';
+import { adminAPI, planAPI } from '../services/api';
 import { useToast } from '../components/Toast';
 
-const tabs = ['Overview', 'Users', 'Plans', 'Trainers'];
+const tabs = ['Overview', 'Users', 'Plans'];
 
 function TabBtn({ active, onClick, children }) {
   return (
@@ -194,60 +194,6 @@ function PlansTab() {
   );
 }
 
-function TrainersTab() {
-  const [trainers, setTrainers] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const { addToast } = useToast();
-
-  useEffect(() => { loadTrainers(); }, []);
-
-  const loadTrainers = async () => {
-    try {
-      const { data } = await trainerAPI.getAll();
-      setTrainers(data.trainers || []);
-    } catch { addToast('Failed to load trainers', 'error'); }
-    finally { setLoading(false); }
-  };
-
-  const handleDelete = async (id) => {
-    if (!window.confirm('Delete this trainer?')) return;
-    try {
-      await trainerAPI.delete(id);
-      addToast('Trainer deleted', 'success');
-      loadTrainers();
-    } catch { addToast('Delete failed', 'error'); }
-  };
-
-  if (loading) return <div>Loading...</div>;
-
-  return (
-    <div>
-      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '24px' }}>
-        <h2 style={{ fontFamily: 'Outfit', fontSize: '24px' }}>Manage Trainers</h2>
-        <button className="btn btn-primary btn-sm" onClick={() => addToast('Trainer creation form coming soon', 'info')}>+ Add Trainer</button>
-      </div>
-      <div className="table-wrapper">
-        <table>
-          <thead>
-            <tr><th>Name</th><th>Specialty</th><th>Exp</th><th>Rating</th><th>Actions</th></tr>
-          </thead>
-          <tbody>
-            {trainers.map(t => (
-              <tr key={t._id}>
-                <td>{t.name}</td>
-                <td>{t.specialization}</td>
-                <td>{t.experience} yrs</td>
-                <td>{t.rating}</td>
-                <td><button onClick={() => handleDelete(t._id)} className="btn btn-danger btn-sm">Delete</button></td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </div>
-  );
-}
-
 export default function AdminDashboard() {
   const [activeTab, setActiveTab] = useState('Overview');
   const [stats, setStats] = useState(null);
@@ -271,7 +217,6 @@ export default function AdminDashboard() {
         {activeTab === 'Overview' && <OverviewTab stats={stats} />}
         {activeTab === 'Users' && <UsersTab />}
         {activeTab === 'Plans' && <PlansTab />}
-        {activeTab === 'Trainers' && <TrainersTab />}
       </div>
     </div>
   );
