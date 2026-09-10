@@ -25,7 +25,7 @@ const FEATURES = [
   { icon: '🧘', title: 'Diverse Class Programs', desc: 'From yoga and pilates to CrossFit and boxing — a class for every goal.' },
   { icon: '📊', title: 'Progress Tracking', desc: 'Advanced tracking tools to monitor your strength, cardio, and body metrics.' },
   { icon: '💊', title: 'Nutrition Supplements', desc: 'Premium supplements sourced from trusted brands available in-house.' },
-  { icon: '🕐', title: 'Open 6AM – 10PM', desc: 'Extended hours to fit your schedule — morning, lunch, or evening workouts.' },
+  { icon: '🕐', title: 'Mon–: 5.00AM–1.00PM | Others day: 5.00AM–10.00PM', desc: 'Extended hours to fit your schedule — morning, lunch, or evening workouts.' },
 ];
 
 const TESTIMONIALS = [
